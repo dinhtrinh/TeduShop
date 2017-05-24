@@ -7,15 +7,15 @@ namespace TeduShop.Data.Infrastructure
     public interface IRepository<T> where T : class
     {
         //Marks an entity new
-        void Add(T entity);
+        T Add(T entity);
 
         //Marks an entity modified
         void Update(T entity);
 
         //Marks an entity to be remove
-        void Delete(T entity);
+        T Delete(T entity);
 
-        void Delete(int id);
+        T Delete(int id);
         //Delete multi records
         void DeleteMulti(Expression<Func<T, bool>> where);
 

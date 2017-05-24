@@ -9,7 +9,7 @@ namespace TeduShop.Data.Repositories
 
     public class VisitorStatisticRepository : RepositoryBase<VisitorStatistic>, IVisitorStatisticRepository
     {
-        public VisitorStatisticRepository(DbFactory dbFactory) : base(dbFactory)
+        public VisitorStatisticRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
     }
