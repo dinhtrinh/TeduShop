@@ -8,11 +8,11 @@ namespace TeduShop.Service
 {
     public interface IPostService
     {
-        void Add(Post post);
+        Post Add(Post post);
 
         void Update(Post post);
 
-        void Delete(int id);
+        Post Delete(int id);
 
         IEnumerable<Post> GetAll();
 
@@ -38,14 +38,14 @@ namespace TeduShop.Service
             this._unitOfWork = unitOfWork;
         }
 
-        public void Add(Post post)
+        public Post Add(Post post)
         {
-            _postRepository.Add(post);
+            return _postRepository.Add(post);
         }
 
-        public void Delete(int id)
+        public Post Delete(int id)
         {
-            _postRepository.Delete(id);
+            return _postRepository.Delete(id);
         }
 
         public IEnumerable<Post> GetAll()
