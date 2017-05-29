@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 using TeduShop.Data.Infrastructure;
 using TeduShop.Data.Repositories;
 using TeduShop.Model.Models;
@@ -21,6 +22,12 @@ namespace TeduShop.UnitTest.RepositoryTest
         }
 
         [TestMethod]
+        public void PostCategory_Repository_GetAll()
+        {
+            var list = objRepository.GetAll().ToList();
+            Assert.AreEqual(4, list.Count);
+        }
+        [TestMethod]
         public void PostCategory_Repository_Create()
         {
             PostCategory category = new PostCategory();
@@ -32,7 +39,7 @@ namespace TeduShop.UnitTest.RepositoryTest
             unitOfWork.Commit();
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(1, result.ID);
+            Assert.AreEqual(4, result.ID);
         }
     }
 }
