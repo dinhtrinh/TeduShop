@@ -13,7 +13,7 @@ namespace TeduShop.Web.Api
     {
         IPostCategoryService _postCategoryService;
 
-        public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService) 
+        public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService)
             : base(errorService)
         {
             this._postCategoryService = postCategoryService;
@@ -24,18 +24,8 @@ namespace TeduShop.Web.Api
         {
             return CreateHttpRespon(request, () =>
             {
-                HttpResponseMessage response = null;
-                if (!ModelState.IsValid)
-                {
-                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-                else
-                {
-                    var listCategory = _postCategoryService.GetAll();
-                    _postCategoryService.Save();
-
-                    response = request.CreateResponse(HttpStatusCode.OK, listCategory);
-                }
+                var listCategory = _postCategoryService.GetAll();
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listCategory);
                 return response;
             });
         }
@@ -45,13 +35,13 @@ namespace TeduShop.Web.Api
             return CreateHttpRespon(request, () =>
             {
                 HttpResponseMessage response = null;
-                if(!ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    request.CreateErrorResponse(HttpStatusCode.BadRequest,ModelState);
+                    request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
                 else
                 {
-                    var category= _postCategoryService.Add(postCategory);
+                    var category = _postCategoryService.Add(postCategory);
                     _postCategoryService.Save();
 
                     response = request.CreateResponse(HttpStatusCode.OK, category);
@@ -81,7 +71,7 @@ namespace TeduShop.Web.Api
         }
 
 
-        public HttpResponseMessage Delete(HttpRequestMessage request,int id)
+        public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpRespon(request, () =>
             {
